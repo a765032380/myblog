@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django</title>
+</head>
+<body>
+
+
+
+    <form action="/blog/submit" method="post">
+        {% csrf_token %}
+        <p>标题</p><input type="text" name="title">
+        <p>内容</p><input type="text" name="context">
+        <input type="submit" value="搜索">
+    </form>
+    <p>{{ rlt }}</p>
+    <p>{{ rlc }}</p>
+</body>
+</html>
