@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django</title>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+
+
+    </script>
+</head>
+<body>
+    <form action="/blog/update" method="post">
+        {% csrf_token %}
+        <p>标题</p><input type="text" name="title" value={{ title }}>
+        <p>内容</p><input type="text" name="context" value={{ context }}>
+        <input type="hidden" name="id" value={{ id }}>
+        <input id="submit" type="submit" value="修改">
+    </form>
+
+
+</body>
+</html>

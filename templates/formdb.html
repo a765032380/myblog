@@ -5,16 +5,40 @@
     <title>Django</title>
 </head>
 <body>
-
-
-
-    <form action="/blog/submit" method="post">
+    <form action="/blog/add" method="post">
         {% csrf_token %}
         <p>标题</p><input type="text" name="title">
         <p>内容</p><input type="text" name="context">
-        <input type="submit" value="搜索">
+        <input id="submit" type="submit" value="添加">
     </form>
-    <p>{{ rlt }}</p>
-    <p>{{ rlc }}</p>
+
+    <table border="1" cellspacing="0" cellpadding="0" style="margin-top: 50px">
+      <tr>
+        <th>标题</th>
+        <th>内容</th>
+        <th>操作</th>
+      </tr>
+        {% for item in data %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.context }}</td>
+
+                <td>
+                    <form action="/blog/delete" method="post">
+                        {% csrf_token %}
+                        <input name="id" value="{{ item.id }}" type="hidden"/>
+                        <input type="submit" value="删除">
+                    </form>
+                    <form action="/blog/update_view" method="post">
+                        {% csrf_token %}
+                        <input name="id" value="{{ item.id }}" type="hidden"/>
+                        <input name="title" value="{{ item.title }}" type="hidden"/>
+                        <input name="context" value="{{ item.context }}" type="hidden"/>
+                        <input type="submit" value="修改">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

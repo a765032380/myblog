@@ -6,11 +6,12 @@ from . import views
 
 
 urlpatterns = [
-    url('^deletedb$', views.deletedb),
+    url('^delete$', search.delete),
     url('^savedb$', views.savedb),
     url('^selectdb$', views.selectdb),
-    url('^updatedb$', views.updatedb),
+    url('^update$', search.update),
 
-    url('^search-form$', search.search_form),
-    url('^submit$', search.submit),
+    url('^select$', search.select),
+    url('^add$', search.add),
+    url('^update_view$', search.update_view),
 ]
