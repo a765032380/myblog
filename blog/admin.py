@@ -36,7 +36,7 @@ class UserAdmin(ModelAdmin):
     # 显示底部的选项
     actions_on_bottom = True
     # 列表页面要显示属性
-    list_display = ["name", "phone", 'age']
+    list_display = ["name", "phone", 'age', 'signature', 'email']
     # 过滤的属性
     # list_filter = ["age", "birthday"]
     # 分页的每页数量
@@ -50,5 +50,7 @@ class UserAdmin(ModelAdmin):
     # ]
 
 
+admin.site.site_header = 'MyBlog'
+admin.site.site_title = 'GLL'
 admin.site.register(models.Test, TestAdmin)
 admin.site.register(models.User, UserAdmin)
