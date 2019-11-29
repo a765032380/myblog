@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 
 from django.conf.urls import url, include
+from blog.search import select
 
 urlpatterns = [
     url('^admin/', admin.site.urls),
     url('^blog/', include('blog.urls')),
+    url('^$', select),
 ]
