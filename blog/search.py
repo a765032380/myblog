@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import json
 
+from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, redirect
 
@@ -14,6 +16,8 @@ def select(request):
     test = Test.objects.values()
     data['data'] = list(test)
     return render(request, "formdb.html", data)
+
+
 def update_view(request):
     ctx = {}
     if request.POST:
@@ -22,6 +26,7 @@ def update_view(request):
         ctx['id'] = request.POST['id']
 
     return render(request, "formdb_update.html", ctx)
+
 
 # 接收请求数据
 def add(request):
@@ -49,6 +54,8 @@ def delete(request):
     # Test.objects.all().delete()
 
     return redirect('/blog/select')
+
+
 def update(request):
     # 修改其中一个id=1的name字段，再save，相当于SQL中的UPDATE
     if request.POST:
@@ -65,17 +72,19 @@ def update(request):
 
     return redirect('/blog/select')
 
+
 def registered(request):
     if request.POST:
         userName = request.POST['userName']
         passWord = request.POST['passWord']
-
         test1 = User(name=userName, password=passWord)
         test1.save()
 
-        data = {}
-        data['code'] = 200
-        data['msg'] = "成功"
-        book = User.objects.get(test1)
-        data['data'] = book
-        return HttpResponse("<p>" + str(data).replace("'", '"') + "</p>")
+        data = {'code': 200, 'msg': "成功"}
+        book = User.objects.get(pk=test1.pk)
+        data['data'] = object_to_json(book)
+    return HttpResponse("<p>" + str(data).replace("'", '"') + "</p>")
+
+
+def object_to_json(obj):
+    return dict([(kk, obj.__dict__[kk]) for kk in obj.__dict__.keys() if kk != "_state"])
