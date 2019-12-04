@@ -14,4 +14,6 @@ urlpatterns = [
     url('^select$', search.select),
     url('^add$', search.add),
     url('^update_view$', search.update_view),
+    url('^registered', search.registered),
+
 ]
