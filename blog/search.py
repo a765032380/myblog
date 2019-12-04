@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, redirect
 
 # 表单
-from blog.models import Test
+from blog.models import Test, User
 
 
 def select(request):
@@ -64,3 +64,18 @@ def update(request):
     # Test.objects.all().update(name='Google')
 
     return redirect('/blog/select')
+
+def registered(request):
+    if request.POST:
+        userName = request.POST['userName']
+        passWord = request.POST['passWord']
+
+        test1 = User(name=userName, password=passWord)
+        test1.save()
+
+        data = {}
+        data['code'] = 200
+        data['msg'] = "成功"
+        book = User.objects.get(test1)
+        data['data'] = book
+        return HttpResponse("<p>" + str(data).replace("'", '"') + "</p>")
