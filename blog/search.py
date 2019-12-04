@@ -83,7 +83,7 @@ def registered(request):
         data = {'code': 200, 'msg': "成功"}
         book = User.objects.get(pk=test1.pk)
         data['data'] = object_to_json(book)
-    return HttpResponse("<p>" + str(data).replace("'", '"') + "</p>")
+    return HttpResponse(str(data).replace("'", '"'), content_type="application/json;charset=utf-8")
 
 
 def object_to_json(obj):
