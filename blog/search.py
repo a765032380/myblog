@@ -3,7 +3,7 @@ import json
 
 from django.core import serializers
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, render, redirect
+from django.shortcuts import  render, redirect
 
 # 表单
 from blog.models import Test, User
@@ -73,6 +73,22 @@ def update(request):
     return redirect('/blog/select')
 
 
+def login(request):
+    if request.POST:
+        userName = request.POST['userName']
+        passWord = request.POST['passWord']
+        # book = User.objects.get(password=passWord, name=userName)
+
+        try:
+            book = User.objects.get(password=passWord, name=userName)
+        except:
+            res = {'code': 2001, 'msg': "验证码或密码不正确"}
+            return return_http(request,res)
+
+        res = {'code': 200, 'msg': "成功", 'data': object_to_json(book)}
+    return return_http(request,res)
+
+
 def registered(request):
     if request.POST:
         userName = request.POST['userName']
@@ -80,11 +96,15 @@ def registered(request):
         test1 = User(name=userName, password=passWord)
         test1.save()
 
-        data = {'code': 200, 'msg': "成功"}
+        res = {'code': 200, 'msg': "成功"}
         book = User.objects.get(pk=test1.pk)
-        data['data'] = object_to_json(book)
-    return HttpResponse(str(data).replace("'", '"'), content_type="application/json;charset=utf-8")
+        res['data'] = object_to_json(book)
+    return return_http(request,res)
 
 
 def object_to_json(obj):
     return dict([(kk, obj.__dict__[kk]) for kk in obj.__dict__.keys() if kk != "_state"])
+
+
+def return_http(request,res):
+    return HttpResponse(request,str(res).replace("'", '"'), content_type="application/json;charset=utf-8")

@@ -13,7 +13,7 @@
     </script>
 </head>
 <body>
-    <form action="/blog/update" method="post">
+    <form action="/api/update" method="post">
         {% csrf_token %}
         <p>标题</p><input type="text" name="title" value={{ title }}>
         <p>内容</p><input type="text" name="context" value={{ context }}>

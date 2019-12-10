@@ -20,6 +20,6 @@ from blog.search import select
 
 urlpatterns = [
     url('^admin/', admin.site.urls),
-    url('^blog/', include('blog.urls')),
+    url('^api/', include('blog.urls')),
     url('^$', select),
 ]
