@@ -83,10 +83,10 @@ def login(request):
             book = User.objects.get(password=passWord, name=userName)
         except:
             res = {'code': 2001, 'msg': "验证码或密码不正确"}
-            return return_http(request,res)
+            return return_http(res)
 
         res = {'code': 200, 'msg': "成功", 'data': object_to_json(book)}
-    return return_http(request,res)
+    return return_http(res)
 
 
 def registered(request):
@@ -99,12 +99,12 @@ def registered(request):
         res = {'code': 200, 'msg': "成功"}
         book = User.objects.get(pk=test1.pk)
         res['data'] = object_to_json(book)
-    return return_http(request,res)
+    return return_http(res)
 
 
 def object_to_json(obj):
     return dict([(kk, obj.__dict__[kk]) for kk in obj.__dict__.keys() if kk != "_state"])
 
 
-def return_http(request,res):
-    return HttpResponse(request,str(res).replace("'", '"'), content_type="application/json;charset=utf-8")
+def return_http(res):
+    return HttpResponse(str(res).replace("'", '"'))
