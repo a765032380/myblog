@@ -21,6 +21,7 @@
           <option value="myblog.urls.*" />
           <option value="blog.testdb.Employee" />
           <option value="list.replace" />
+          <option value="django.shortcuts.render_to_response" />
         </list>
       </option>
     </inspection_tool>
