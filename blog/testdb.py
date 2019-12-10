@@ -20,7 +20,7 @@ def selectdb(request):
     data['msg'] = "成功"
     book = Test.objects.values()
     data['data'] = list(book)
-    return HttpResponse("<p>" + str(data).replace("'", '"') + "</p>")
+    return HttpResponse(str(data).replace("'", '"'))
 
 
 # 数据库操作

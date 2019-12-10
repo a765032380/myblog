@@ -15,5 +15,10 @@ urlpatterns = [
     url('^add$', search.add),
     url('^update_view$', search.update_view),
     url('^registered', search.registered),
+    url('^login', search.login),
+
+
+
+    url('^home', views.selectdb),
 
 ]

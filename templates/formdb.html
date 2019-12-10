@@ -5,7 +5,7 @@
     <title>Django</title>
 </head>
 <body>
-    <form action="/blog/add" method="post">
+    <form action="/api/add" method="post">
         {% csrf_token %}
         <p>标题</p><input type="text" name="title">
         <p>内容</p><input type="text" name="context">
@@ -24,12 +24,12 @@
                 <td>{{ item.context }}</td>
 
                 <td>
-                    <form action="/blog/delete" method="post">
+                    <form action="/api/delete" method="post">
                         {% csrf_token %}
                         <input name="id" value="{{ item.id }}" type="hidden"/>
                         <input type="submit" value="删除">
                     </form>
-                    <form action="/blog/update_view" method="post">
+                    <form action="/api/update_view" method="post">
                         {% csrf_token %}
                         <input name="id" value="{{ item.id }}" type="hidden"/>
                         <input name="title" value="{{ item.title }}" type="hidden"/>
