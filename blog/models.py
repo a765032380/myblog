@@ -23,3 +23,16 @@ class User(models.Model):
 
     class Meta:
         verbose_name_plural = '用户'
+
+
+class Video(models.Model):
+    video_title = models.CharField(max_length=100, verbose_name='标题')
+    video_context = models.CharField(max_length=100, verbose_name='内容')
+    video_image = models.CharField(max_length=100, verbose_name='封面')
+    video_url = models.CharField(max_length=100, verbose_name='地址')
+    video_praise_number = models.IntegerField(verbose_name='点赞数量')
+    video_comments_number = models.IntegerField(verbose_name='评论数量')
+    video_share_number = models.IntegerField(verbose_name='分享数量')
+
+    class Meta:
+        verbose_name_plural = '视频'

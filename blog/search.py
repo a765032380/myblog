@@ -7,6 +7,9 @@ from django.shortcuts import  render, redirect
 
 # 表单
 from blog.models import Test, User
+from blog.utils import return_failure, return_success, object_to_json
+
+back_code = {'code': 200, 'msg':''}
 
 
 def select(request):
@@ -73,38 +76,5 @@ def update(request):
     return redirect('/blog/select')
 
 
-def login(request):
-    if request.POST:
-        userName = request.POST['userName']
-        passWord = request.POST['passWord']
-        # book = User.objects.get(password=passWord, name=userName)
-
-        try:
-            book = User.objects.get(password=passWord, name=userName)
-        except:
-            res = {'code': 2001, 'msg': "验证码或密码不正确"}
-            return return_http(res)
-
-        res = {'code': 200, 'msg': "成功", 'data': object_to_json(book)}
-    return return_http(res)
 
 
-def registered(request):
-    if request.POST:
-        userName = request.POST['userName']
-        passWord = request.POST['passWord']
-        test1 = User(name=userName, password=passWord)
-        test1.save()
-
-        res = {'code': 200, 'msg': "成功"}
-        book = User.objects.get(pk=test1.pk)
-        res['data'] = object_to_json(book)
-    return return_http(res)
-
-
-def object_to_json(obj):
-    return dict([(kk, obj.__dict__[kk]) for kk in obj.__dict__.keys() if kk != "_state"])
-
-
-def return_http(res):
-    return HttpResponse(str(res).replace("'", '"'))

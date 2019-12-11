@@ -1,9 +1,7 @@
-
 from django.conf.urls import url
 
-from blog import search
+from blog import search, user_api,video_api
 from . import views
-
 
 urlpatterns = [
     url('^delete$', search.delete),
@@ -14,11 +12,15 @@ urlpatterns = [
     url('^select$', search.select),
     url('^add$', search.add),
     url('^update_view$', search.update_view),
-    url('^registered', search.registered),
-    url('^login', search.login),
-
-
-
     url('^home', views.selectdb),
+
+    # api相关的
+    # user_api
+    url('^registered', user_api.registered),
+    url('^login', user_api.login),
+
+    # video_api
+    url('^select_video',video_api.select_video)
+
 
 ]
