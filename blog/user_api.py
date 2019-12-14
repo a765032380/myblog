@@ -25,6 +25,16 @@ def registered(request):
     if request.POST:
         userName = request.POST['userName']
         passWord = request.POST['passWord']
+        # 判断用户名
+        try:
+            user = User.objects.get(name=userName)
+        except Exception as e:
+            user = None
+        if user:
+            return return_failure(code=2002, msg="当前用户已存在")
+        # if any(book):
+        #     return return_failure(code=2002, msg="当前用户已存在")
+        # except:
         test1 = User(name=userName, password=passWord)
         test1.save()
         book = User.objects.get(pk=test1.pk)

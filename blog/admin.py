@@ -49,7 +49,7 @@ class VideoAdmin(ModelAdmin):
     # 显示底部的选项
     actions_on_bottom = True
     # 列表页面要显示属性
-    list_display = ["video_title", "video_context", 'video_image', 'video_url',
+    list_display = ["video_title", "video_context", 'video_image', 'video_file',
                     'video_praise_number', 'video_comments_number', 'video_share_number']
     # 过滤的属性
     # list_filter = ["age", "birthday"]
