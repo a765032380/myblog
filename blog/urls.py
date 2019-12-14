@@ -20,7 +20,10 @@ urlpatterns = [
     url('^login', user_api.login),
 
     # video_api
-    url('^select_video',video_api.select_video)
+    url('^select_video',video_api.select_video),
+
+    # 测试爬虫
+    url('^test_reptile',video_api.test_reptile)
 
 
 ]
