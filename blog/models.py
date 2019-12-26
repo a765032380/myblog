@@ -39,9 +39,26 @@ class Video(models.Model):
 
 
 class News(models.Model):
-    new_title = models.CharField(max_length=100,verbose_name='标题')
-    new_context = models.CharField(max_length=200,verbose_name='内容')
-    new_url = models.CharField(max_length=100,verbose_name='新闻地址')
+    title = models.CharField(max_length=100,verbose_name='标题')
+    date = models.CharField(max_length=200,verbose_name='日期')
+    url = models.CharField(max_length=100,verbose_name='新闻地址')
+    thumbnail_pic_s = models.ImageField(max_length=100,verbose_name='图片地址1')
+    thumbnail_pic_s02 = models.ImageField(max_length=100,verbose_name='图片地址2')
+    thumbnail_pic_s03 = models.ImageField(max_length=100,verbose_name='图片地址3')
+    category = models.CharField(max_length=100,verbose_name='新闻类型')
+    uniquekey = models.CharField(max_length=100,verbose_name='')
+    author_name = models.CharField(max_length=100,verbose_name='')
 
     class Meta:
         verbose_name_plural = '新闻'
+
+
+class Joke(models.Model):
+    content = models.CharField(max_length=10000,verbose_name='内容')
+    hashId = models.CharField(max_length=200,verbose_name='hashId')
+    unixTime = models.CharField(max_length=100,verbose_name='')
+    updateTime = models.CharField(max_length=100,verbose_name='更新时间')
+    url = models.CharField(max_length=1000,verbose_name='图片地址')
+
+    class Meta:
+        verbose_name_plural = '聚合笑话'

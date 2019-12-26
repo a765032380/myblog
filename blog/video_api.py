@@ -1,5 +1,7 @@
-import json
+# -*- coding:UTF-8 -*-
 
+import json
+import re
 import requests
 from bs4 import BeautifulSoup
 from django.core import serializers
@@ -21,18 +23,13 @@ def select_video_list(request):
 
 
 def test_reptile(request):
-    global result
-    url = 'http://www.cntour.cn'
-    str_html = requests.get(url)  # Get方式获取网页数据
-    soup = BeautifulSoup(str_html.text, 'lxml')
-    data = soup.select(
-        '#main > div > div.mtop.firstMod.clearfix > div.leftBox > div:nth-child(2) > ul > li > a')
-    for item in data:
-        result = {
-            'title': item.get_text(),
-            'link': item.get('href')
-        }
-        print(result)
+    target = 'http://www.biqukan.com/1_1094/5403177.html'
+    req = requests.get(url=target)
+    html = req.text
+    bf = BeautifulSoup(html)
+    texts = bf.find_all('div', class_='showtxt')
+    print(texts[0].text.replace('\xa0' * 8, '\n\n'))
+
     return return_success("")
 
 
