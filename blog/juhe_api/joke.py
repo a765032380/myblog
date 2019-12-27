@@ -32,7 +32,7 @@ def add_joke():
     # request3(appkey, "GET")
     #
     # # 4.最新趣图
-    # request4(appkey, "GET")
+    request4(appkey, "GET")
 
 
 # 按更新时间查询笑话

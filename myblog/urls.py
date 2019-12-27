@@ -17,9 +17,12 @@ from django.contrib import admin
 
 from django.conf.urls import url, include
 from blog.search import select
+from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
     url('^admin/', admin.site.urls),
     url('^api/', include('blog.urls')),
     url('^$', select),
+    url(r'^media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT})
 ]
