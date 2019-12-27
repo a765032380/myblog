@@ -1,11 +1,12 @@
+from blog.juhe_api.news import add_news
 from blog.models import News
 from blog.utils import return_success, return_failure
 
 
-def api_news(request):
+def get_news(request):
     page = 0
     try:
-        page = request.GET['page']
+        page = request.POST['page']
     except Exception as e:
         print(e)
     try:
@@ -13,3 +14,8 @@ def api_news(request):
         return return_success(list(joke_list))
     except:
         return return_failure(code=2004,msg="没有更多数据")
+
+
+def add_news_api(request):
+    add_news()
+    return return_success('保存成功')

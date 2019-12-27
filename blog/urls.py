@@ -24,10 +24,12 @@ urlpatterns = [
     url('^select_video',video_api.select_video),
 
     # 笑话API
-    url('^api_joke', joke_api.api_joke),
+    url('^get_joke', joke_api.get_joke),
+    url('^add_joke', joke_api.add_joke_api),
 
     # 新闻API
-    url('^api_joke', news_api.api_news),
+    url('^get_joke', news_api.get_news),
+    url('^add_joke', news_api.add_news_api),
     # 测试爬虫
     url('^test_reptile',video_api.test_reptile)
 
