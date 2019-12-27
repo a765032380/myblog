@@ -26,7 +26,7 @@ def add_joke():
     # request1(appkey, "GET")
 
     # # 2.最新笑话
-    request1(appkey, "GET")
+    request2(appkey, "GET")
     #
     # # 3.按更新时间查询趣图
     # request3(appkey, "GET")
