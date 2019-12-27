@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 from blog.juhe_api.joke import add_joke
 from blog.models import Joke
@@ -12,6 +13,7 @@ def get_joke(request):
     except Exception as e:
         print(e)
     try:
+        # joke_list = Joke.objects.filter(~Q(url='')).all().values()[int(page)*10:int(page)*10+10]
         joke_list = Joke.objects.all().values()[int(page)*10:int(page)*10+10]
         return return_success(list(joke_list))
     except:
