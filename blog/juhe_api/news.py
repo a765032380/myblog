@@ -4,7 +4,7 @@ from urllib.parse import urlencode
 from blog.models import News
 
 
-def main():
+def add_news():
     # 配置聚合新闻的APPKey
     appkey = "a326ac7ce2a8d317fae228378a23638a"
     get_juhe_news(appkey, "GET")

@@ -14,10 +14,11 @@ from urllib.parse import urlencode
 
 
 from blog.models import Joke
-from blog.utils import object_to_json
+from blog.utils import object_to_json, return_success
 
 
-def main():
+
+def add_joke():
     # 配置您申请的APPKey
     appkey = "1064f77cfe93ee5d2b808a21036152c9"
 
@@ -134,6 +135,7 @@ def print_res(res):
                     user = None
                 if user:
                     print('本条笑话数据已存在')
+                    # return return_success('本条笑话数据已存在')
                 else:
                     j = Joke()
                     j.content = get_res(joke, 'content')
@@ -142,6 +144,7 @@ def print_res(res):
                     j.updateTime = get_res(joke, 'updatetime')
                     j.url = get_res(joke, 'url')
                     j.save()
+            # return return_success('保存成功')
         else:
             print("%s:%s" % (res["error_code"], res["reason"]))
     else:
