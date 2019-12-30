@@ -13,8 +13,8 @@ def get_joke(request):
     except Exception as e:
         print(e)
     try:
-        # joke_list = Joke.objects.filter(~Q(url='')).all().values()[int(page)*10:int(page)*10+10]
-        joke_list = Joke.objects.all().values()[int(page)*10:int(page)*10+10]
+        joke_list = Joke.objects.filter(~Q(url='')).all().values()[int(page)*10:int(page)*10+10]
+        # joke_list = Joke.objects.all().values()[int(page)*10:int(page)*10+10]
         return return_success(list(joke_list))
     except:
         return return_failure(code=2004,msg="没有更多数据")

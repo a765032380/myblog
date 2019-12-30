@@ -10,12 +10,12 @@ def object_to_json(obj):
 
 
 def return_success(data):
-    res = {'code': 200, 'msg': "成功", 'data': data}
+    res = {'Code': 0, 'Msg': "成功", 'Data': data}
     return HttpResponse(str(res).replace("'", '"'))
 
 
 def return_failure(code, msg, data_bean=""):
-    res = {'code': code, 'msg': msg, 'data': data_bean}
+    res = {'Code': code, 'Msg': msg, 'Data': data_bean}
     return HttpResponse(str(res).replace("'", '"'))
 
 
